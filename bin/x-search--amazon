@@ -1,0 +1,15 @@
+#!/bin/sh -e
+##:
+#h: Usage: x-search--amazon TERM
+#h:
+#h: Search mechanism for x-search(1).
+##:
+x_search__amazon() {
+    xdg-open "https://www.amazon.es/exec/obidos/external-search/?field-keywords=${*}&ie=UTF-8&mode=blended";;
+}
+if test @"$(basename "$0")" = @"x-search--amazon";then
+    case "${1}" in
+        ''|-h|--help) sed -n 's/^ *#h: \{0,1\}//p' "$0";;
+        *)            x_search__amazon "$@"; exit 0    ;;
+    esac
+fi

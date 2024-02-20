@@ -1,0 +1,15 @@
+#!/bin/sh -e
+##:
+#h: Usage: x-search--openbsd TERM
+#h:
+#h: Search mechanism for x-search(1).
+##:
+x_search__openbsd() {
+    xdg-open "https://man.openbsd.org/?query=${*}" 
+}
+if test @"$(basename "$0")" = @"x-search--openbsd";then
+    case "${1}" in
+        ''|-h|--help) sed -n 's/^ *#h: \{0,1\}//p' "$0";;
+        *)            x_search__openbsd "$@"; exit 0   ;;
+    esac
+fi
